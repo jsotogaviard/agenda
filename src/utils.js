@@ -25,6 +25,10 @@ export const SEVEN_DAYS = 7
 
 export const DAYS = "days"
 
+export const ONE_DAY_IN_SECONDS = 1000 * 60 * 60 * 24
+
+export const DATE_FORMAT_PATTERN = "YYYY-MM-DD"
+
 /**
  * Format the date to a string
  *
@@ -32,7 +36,7 @@ export const DAYS = "days"
  * @returns {string}
  */
 export function format(date){
-    return moment(date).format('YYYY-MM-DD');
+    return moment(date).format(DATE_FORMAT_PATTERN);
 }
 
 /**
@@ -45,8 +49,7 @@ function doy(time){
     let date = new Date(time)
     let start = new Date(date.getFullYear(), 0, 0);
     let diff = (date - start) + ((start.getTimezoneOffset() - date.getTimezoneOffset()) * 60 * 1000);
-    let oneDay = 1000 * 60 * 60 * 24;
-    return Math.floor(diff / oneDay);
+    return Math.floor(diff / ONE_DAY_IN_SECONDS);
 }
 
 /**
